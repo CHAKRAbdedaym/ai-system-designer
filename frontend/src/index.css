@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Optional: reset / base styles */
+@layer base {
+  body {
+    @apply bg-neutral-100 text-neutral-900 antialiased;
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+/* Reusable component classes */
+@layer components {
+  .btn-primary {
+    @apply bg-primary-900 text-white font-medium py-3 px-6 rounded-lg
+           hover:bg-primary-800 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2
+           disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-900 text-primary-900 font-medium py-3 px-6 rounded-lg
+           hover:bg-primary-900 hover:text-white transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-card p-6 border border-neutral-200;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 border border-neutral-300 rounded-lg
+           focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent
+           transition duration-200 placeholder:text-gray-400;
+  }
+
+  
+    .message-success {
+      @apply bg-green-50 border-l-4 border-success text-success p-4 rounded-lg;   /* changed */
+    }
+  
+    .message-error {
+      @apply bg-red-50 border-l-4 border-danger text-danger p-4 rounded-lg;     /* changed */
+    }
+  
+}
