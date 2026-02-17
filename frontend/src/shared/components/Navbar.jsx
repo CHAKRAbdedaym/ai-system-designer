@@ -29,49 +29,20 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-10">
-            
-
+          <div className="hidden md:flex items-center space-x-8">
             {isLoggedIn && (
               <>
-              <Link
-              to="/"
-              className={`text-gray-300 hover:text-white transition font-medium ${
-                isActive("/") ? "text-white underline underline-offset-4" : ""
-              }`}
-            >
-              Home
-            </Link>
-            
-              <Link
-              to="/analyze"
-              className={`text-gray-300 hover:text-white transition font-medium ${
-                isActive("/analyze") ? "text-white underline underline-offset-4" : ""
-              }`}
-            >
-              Analyze
-            </Link>
-
-                <Link
-                  to="/history"
-                  className={`text-gray-300 hover:text-white transition font-medium ${
-                    isActive("/history") ? "text-white underline underline-offset-4" : ""
-                  }`}
-                >
-                  History
-                </Link>
-
-                {/* Optional future pages */}
-                <Link
-                  to="/dashboard"
-                  className={`text-gray-300 hover:text-white transition font-medium ${
-                    isActive("/dashboard") ? "text-white underline underline-offset-4" : ""
-                  }`}
-                >
-                  Dashboard
-                </Link>
-
-                
+                {["/", "/analyze", "/history", "/dashboard"].map((path) => (
+                  <Link
+                    key={path}
+                    to={path}
+                    className={`text-gray-300 hover:text-white transition font-medium ${
+                      isActive(path) ? "text-white underline underline-offset-4" : ""
+                    }`}
+                  >
+                    {path === "/" ? "Home" : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+                  </Link>
+                ))}
               </>
             )}
           </div>
@@ -108,6 +79,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
               className="text-gray-300 hover:text-white focus:outline-none"
+              aria-label="Toggle mobile menu"
             >
               <svg
                 className="h-8 w-8"
@@ -141,49 +113,20 @@ export default function Navbar() {
       {isMobileOpen && (
         <div className="md:hidden bg-gray-900 border-t border-gray-800">
           <div className="px-4 pt-2 pb-4 space-y-3">
-            
-
             {isLoggedIn && (
               <>
-              <Link
-              to="/"
-              onClick={() => setIsMobileOpen(false)}
-              className={`block px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition ${
-                isActive("/") ? "bg-gray-800 text-white" : ""
-              }`}
-            >
-              Home
-            </Link>
-
-              <Link
-              to="/analyze"
-              onClick={() => setIsMobileOpen(false)}
-              className={`block px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition ${
-                isActive("/analyze") ? "bg-gray-800 text-white" : ""
-              }`}
-            >
-              Analyze
-            </Link>
-                <Link
-                  to="/history"
-                  onClick={() => setIsMobileOpen(false)}
-                  className={`block px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition ${
-                    isActive("/history") ? "bg-gray-800 text-white" : ""
-                  }`}
-                >
-                  History
-                </Link>
-
-                {/* Optional future pages */}
-                <Link
-                  to="/dashboard"
-                  onClick={() => setIsMobileOpen(false)}
-                  className="block px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition"
-                >
-                  Dashboard
-                </Link>
-
-                
+                {["/", "/analyze", "/history", "/dashboard"].map((path) => (
+                  <Link
+                    key={path}
+                    to={path}
+                    onClick={() => setIsMobileOpen(false)}
+                    className={`block px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition ${
+                      isActive(path) ? "bg-gray-800 text-white" : ""
+                    }`}
+                  >
+                    {path === "/" ? "Home" : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+                  </Link>
+                ))}
               </>
             )}
 
